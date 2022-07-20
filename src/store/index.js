@@ -1,6 +1,5 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
-import { v1 } from "uuid";
 
 export default createStore({
   plugins: [createPersistedState()],
@@ -15,10 +14,8 @@ export default createStore({
   mutations: {
     addToList(state, value) {
       state.tasks.push({
-        id: v1(),
         name: value,
         state: "待處理",
-        editing: false,
       });
     },
     deleteFromTasks(state, index) {
@@ -34,6 +31,9 @@ export default createStore({
       }
       // 改變
       state.tasks[index].state = state.condition[currentI];
+    },
+    taskNameUpdate: (state, { newName, index }) => {
+      state.tasks[index].name = newName;
     },
   },
   actions: {},

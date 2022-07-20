@@ -4,7 +4,7 @@
       v-model="taskInput"
       @keyup.enter="createTask(this.taskInput)"
       placeholder="請問要做什麼呢?"
-      class="h4 p-2"
+      class="h4 p-2 m-auto"
     />
   </div>
 </template>
