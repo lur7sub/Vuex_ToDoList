@@ -19,8 +19,9 @@
         <input
           v-else
           v-model="newName"
-          @keyup.enter="editSubmit(newName, index)"
-          @keyup.esc="closeMode"
+          @blur="editSubmit(newName, index)"
+          @keydown.enter="$event.target.blur(newName, index)"
+          @keydown.esc="closeMode"
         />
       </div>
       <div class="col-md-4">
@@ -54,12 +55,11 @@ export default {
       this.editMode = !this.editMode;
     },
     closeMode() {
-      this.editMode = !this.editMode;
       this.newName = this.task.name;
     },
     editSubmit(newName, index) {
-      this.$store.commit("taskNameUpdate", { newName, index });
       this.editMode = !this.editMode;
+      this.$store.commit("taskNameUpdate", { newName, index });
     },
   },
 };
