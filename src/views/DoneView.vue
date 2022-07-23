@@ -1,10 +1,5 @@
 <template>
-  <ul
-    v-for="(task, index) in $store.state.tasks.filter(
-      (task) => task.state === '完成'
-    )"
-    :key="index"
-  >
+  <ul v-for="(task, index) in $store.getters.doneFilter" :key="index">
     <TaskItem :task="task" :index="index"></TaskItem>
   </ul>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <ul v-for="(task, index) in $store.state.tasks" :key="index">
+  <ul v-for="(task, index) in $store.getters.allFilter" :key="index">
     <TaskItem :task="task" :index="index"></TaskItem>
   </ul>
 </template>

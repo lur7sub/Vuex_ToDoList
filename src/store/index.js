@@ -6,17 +6,32 @@ export default createStore({
   state: {
     // 設定
     condition: ["待處理", "進行中", "完成"],
-
     // 任務
     tasks: [],
   },
-  getters: {},
+  getters: {
+    doneFilter(state) {
+      return state.tasks.filter((task) => task.state === "完成");
+    },
+    inProgressFilter(state) {
+      return state.tasks.filter((task) => task.state === "進行中");
+    },
+    toDoFilter(state) {
+      return state.tasks.filter((task) => task.state === "待處理");
+    },
+    allFilter(state) {
+      return state.tasks;
+    },
+  },
   mutations: {
     addToList(state, value) {
-      state.tasks.push({
-        name: value,
-        state: "待處理",
-      });
+      let trimValue = value.trim();
+      if (trimValue !== "") {
+        state.tasks.push({
+          name: trimValue,
+          state: "待處理",
+        });
+      }
     },
     deleteFromTasks(state, index) {
       state.tasks.splice(index, 1);
