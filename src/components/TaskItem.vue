@@ -15,7 +15,12 @@
       </div>
       <div class="col-md-4">
         <!-- Task Name -->
-        <span v-if="editMode" @dblclick="openMode">{{ task.name }}</span>
+        <span
+          :class="{ strikeout: task.state === '完成' }"
+          v-if="editMode"
+          @dblclick="openMode"
+          >{{ task.name }}</span
+        >
         <input
           v-else
           v-model="newName"
